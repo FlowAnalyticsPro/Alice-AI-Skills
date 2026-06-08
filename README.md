@@ -1,101 +1,101 @@
-# FAP Skills Marketplace
+# Flow Analytics Pro Skills Marketplace
 
-> **Skills MCP prêts à l'emploi pour Flow Analytics Pro**  
-> Répondez aux vraies questions de vos équipes agiles — en langage naturel, avec vos données réelles.
+> **Ready-to-use MCP skills for Flow Analytics Pro**  
+> Answer real questions from your agile teams — in natural language, with your actual data.
 
 ---
 
-## Qu'est-ce qu'une skill FAP ?
+## What is a Flow Analytics Pro skill?
 
-Une **skill** est un fichier `.md` qui orchestre votre serveur MCP FAP pour répondre à une question métier précise. Elle contient :
+A **skill** is a `.md` file that orchestrates your Flow Analytics Pro MCP server to answer a specific business question. It contains:
 
-- Un **system prompt** qui dit au LLM comment raisonner
-- Une **séquence d'appels MCP** vers vos 26 tools FAP
-- Des **règles d'interprétation** pour transformer les données en verdict
-- Un **format de sortie** standardisé et actionnable
+- A **system prompt** that tells the LLM how to reason
+- A **sequence of MCP calls** to your 26 Flow Analytics Pro tools
+- **Interpretation rules** to turn data into a verdict
+- A standardised, actionable **output format**
 
 ```
-Vous posez une question en langage naturel
+You ask a question in natural language
          ↓
-Le LLM lit la skill
+The LLM reads the skill
          ↓
-Il appelle les tools FAP dans l'ordre
+It calls the Flow Analytics Pro tools in order
          ↓
-Il interprète les données selon les règles
+It interprets the data according to the rules
          ↓
-Il répond en langage métier — pas en métriques
+It answers in business language — not in metrics
 ```
 
-**Vous n'avez pas besoin de connaître les 26 tools.** Vous choisissez votre rôle, posez votre question, obtenez une réponse.
+**You don't need to know the 26 tools.** Pick your role, ask your question, get an answer.
 
 ---
 
-## Prérequis
+## Prerequisites
 
-- **Flow Analytics Pro** avec le serveur MCP configuré (port 3030)
-- Un client compatible MCP : Claude Desktop, Cursor, ou tout LLM supportant le protocole MCP
-- Les modules FAP activés selon les skills choisies (Flow, DORA, Assessment)
+- **Flow Analytics Pro** with the MCP server configured (port 3030)
+- An MCP-compatible client: Claude Desktop, Cursor, or any LLM supporting the MCP protocol
+- The Flow Analytics Pro modules enabled for the skills you choose (Flow, DORA, Assessment)
 
 ---
 
-## Les 15 skills — par persona
+## The 15 skills — by persona
 
 ### 👤 Product Owner
 
-| Skill | Question | Fréquence d'usage | Tools principaux |
-|-------|----------|------------------|-----------------|
-| [`delivery-forecast`](./skills/po/delivery-forecast.md) | Cette feature sera-t-elle livrée à temps ? | Avant chaque engagement | `get_forecast`, `get_flow_metrics` |
-| [`capacity-planning`](./skills/po/capacity-planning.md) | Combien d'items puis-je engager sur le prochain cycle ? | Avant chaque sprint | `get_sprint_metrics`, `get_flow_metrics` |
-| [`commitment-risk`](./skills/po/commitment-risk.md) | Quels items risquent de faire dérailler mes engagements ? | Quotidien / standup | `get_due_date_analysis`, `get_blocked_tickets` |
+| Skill                                                   | Question                                          | Usage frequency        | Main tools                                     |
+| ------------------------------------------------------- | ------------------------------------------------- | ---------------------- | ---------------------------------------------- |
+| [`delivery-forecast`](./skills/po/delivery-forecast.md) | Will this feature be delivered on time?           | Before each commitment | `get_forecast`, `get_flow_metrics`             |
+| [`capacity-planning`](./skills/po/capacity-planning.md) | How many items can I commit to in the next cycle? | Before each sprint     | `get_sprint_metrics`, `get_flow_metrics`       |
+| [`commitment-risk`](./skills/po/commitment-risk.md)     | Which items risk derailing my commitments?        | Daily / standup        | `get_due_date_analysis`, `get_blocked_tickets` |
 
 ---
 
 ### 🔄 Scrum Master / Flow Master
 
-| Skill | Question | Fréquence d'usage | Tools principaux |
-|-------|----------|------------------|-----------------|
-| [`flow-health`](./skills/sm/flow-health.md) | Notre flow est-il sain aujourd'hui ? | Hebdomadaire | `get_flow_metrics`, `get_step_analysis` |
-| [`predictability`](./skills/sm/predictability.md) | L'équipe est-elle prévisible ? | Mensuel / par sprint | `get_sprint_metrics`, `get_flow_trends` |
-| [`bottleneck-detection`](./skills/sm/bottleneck-detection.md) | Où sont les goulots dans notre workflow ? | Rétro / kaizen | `get_step_analysis`, `get_blocked_tickets` |
+| Skill                                                         | Question                                   | Usage frequency      | Main tools                                 |
+| ------------------------------------------------------------- | ------------------------------------------ | -------------------- | ------------------------------------------ |
+| [`flow-health`](./skills/sm/flow-health.md)                   | Is our flow healthy today?                 | Weekly               | `get_flow_metrics`, `get_step_analysis`    |
+| [`predictability`](./skills/sm/predictability.md)             | Is the team predictable?                   | Monthly / per sprint | `get_sprint_metrics`, `get_flow_trends`    |
+| [`bottleneck-detection`](./skills/sm/bottleneck-detection.md) | Where are the bottlenecks in our workflow? | Retro / kaizen       | `get_step_analysis`, `get_blocked_tickets` |
 
 ---
 
 ### 🚂 Release Train Engineer (SAFe)
 
-| Skill | Question | Fréquence d'usage | Tools principaux |
-|-------|----------|------------------|-----------------|
-| [`art-performance`](./skills/rte/art-performance.md) | Quelles équipes de l'ART sont en difficulté ? | Hebdomadaire / ART Sync | `compare_projects`, `get_blocked_tickets` |
-| [`pi-risk`](./skills/rte/pi-risk.md) | Le PI va-t-il tenir ses objectifs ? | Bi-hebdomadaire | `get_forecast`, `get_due_date_analysis` |
-| [`devops-maturity`](./skills/rte/devops-maturity.md) | Quelle est la maturité DevOps de mes équipes ? | Mensuel | `get_dora_metrics`, `get_dora_trends` |
+| Skill                                                | Question                                 | Usage frequency   | Main tools                                |
+| ---------------------------------------------------- | ---------------------------------------- | ----------------- | ----------------------------------------- |
+| [`art-performance`](./skills/rte/art-performance.md) | Which ART teams are struggling?          | Weekly / ART Sync | `compare_projects`, `get_blocked_tickets` |
+| [`pi-risk`](./skills/rte/pi-risk.md)                 | Will the PI meet its objectives?         | Bi-weekly         | `get_forecast`, `get_due_date_analysis`   |
+| [`devops-maturity`](./skills/rte/devops-maturity.md) | What is the DevOps maturity of my teams? | Monthly           | `get_dora_metrics`, `get_dora_trends`     |
 
 ---
 
 ### 📊 Engineering Manager / Director
 
-| Skill | Question | Fréquence d'usage | Tools principaux |
-|-------|----------|------------------|-----------------|
-| [`commitment-tracking`](./skills/manager/commitment-tracking.md) | Nos équipes tiennent-elles leurs engagements ? | Mensuel / trimestriel | `get_sprint_metrics`, `get_due_date_analysis` |
-| [`agile-transformation`](./skills/manager/agile-transformation.md) | Où en est notre transformation agile ? | Trimestriel | `get_assessments`, `get_assessment_trends` |
-| [`delivery-capacity`](./skills/manager/delivery-capacity.md) | Quelle est notre capacité réelle de delivery ? | Mensuel / roadmap | `get_dimension_metrics`, `compare_projects` |
+| Skill                                                              | Question                                  | Usage frequency     | Main tools                                    |
+| ------------------------------------------------------------------ | ----------------------------------------- | ------------------- | --------------------------------------------- |
+| [`commitment-tracking`](./skills/manager/commitment-tracking.md)   | Are our teams meeting their commitments?  | Monthly / quarterly | `get_sprint_metrics`, `get_due_date_analysis` |
+| [`agile-transformation`](./skills/manager/agile-transformation.md) | Where are we in our agile transformation? | Quarterly           | `get_assessments`, `get_assessment_trends`    |
+| [`delivery-capacity`](./skills/manager/delivery-capacity.md)       | What is our actual delivery capacity?     | Monthly / roadmap   | `get_dimension_metrics`, `compare_projects`   |
 
 ---
 
 ### 🎯 CEO / CPO
 
-| Skill | Question | Fréquence d'usage | Tools principaux |
-|-------|----------|------------------|-----------------|
-| [`delivery-trend`](./skills/ceo/delivery-trend.md) | Livrons-nous plus vite qu'avant ? | Trimestriel / QBR | `get_flow_trends`, `get_dora_trends` |
-| [`innovation-vs-debt`](./skills/ceo/innovation-vs-debt.md) | Quelle part va à l'innovation vs la dette ? | Trimestriel / budget | `get_dimension_metrics`, `get_dora_metrics` |
-| [`team-improvement`](./skills/ceo/team-improvement.md) | Nos équipes s'améliorent-elles ? | Semestriel / annuel | `get_assessment_trends`, `get_flow_trends`, `get_dora_trends` |
+| Skill                                                      | Question                                | Usage frequency      | Main tools                                                    |
+| ---------------------------------------------------------- | --------------------------------------- | -------------------- | ------------------------------------------------------------- |
+| [`delivery-trend`](./skills/ceo/delivery-trend.md)         | Are we delivering faster than before?   | Quarterly / QBR      | `get_flow_trends`, `get_dora_trends`                          |
+| [`innovation-vs-debt`](./skills/ceo/innovation-vs-debt.md) | What share goes to innovation vs. debt? | Quarterly / budget   | `get_dimension_metrics`, `get_dora_metrics`                   |
+| [`team-improvement`](./skills/ceo/team-improvement.md)     | Are our teams improving?                | Semi-annual / annual | `get_assessment_trends`, `get_flow_trends`, `get_dora_trends` |
 
 ---
 
-## Structure du repo
+## Repository structure
 
 ```
-fap-skills-marketplace/
+Flow Analytics Pro-skills-marketplace/
 │
-├── README.md                          ← ce fichier
+├── README.md                          ← this file
 │
 ├── skills/
 │   ├── po/
@@ -124,190 +124,212 @@ fap-skills-marketplace/
 │       └── team-improvement.md
 │
 └── docs/
-    ├── how-skills-work.md             ← guide technique
-    ├── mcp-tools-reference.md         ← référence des 26 tools
-    └── faq.md                         ← questions fréquentes
+    ├── how-skills-work.md             ← technical guide
+    ├── mcp-tools-reference.md         ← reference for the 26 tools
+    └── faq.md                         ← frequently asked questions
 ```
 
 ---
 
-## Comment utiliser une skill
+## How to use a skill
 
-### Option 1 — Claude Desktop (recommandé)
+### Prerequisites
 
-1. Configurez le serveur MCP FAP dans votre `claude_desktop_config.json`
-2. Copiez le contenu du fichier skill souhaité
-3. Collez-le comme **system prompt** dans votre conversation
-4. Posez votre question en langage naturel
+### Accessing the Flow Analytics Pro MCP server
+
+Configure the MCP server in your generative AI tool:
+
+- [Claude](https://claude.ai/customize/connectors?modal=add-custom-connector)
+- [ChatGPT](https://chatgpt.com/#settings/Connectors/Advanced)
+- [Mistral](https://docs.mistral.ai/vibe/work/connectors/mcp-connectors#custom-connectors)
+
+### Option 1 — Claude Desktop (recommended)
+
+<del>
+1. Configure the Flow Analytics Pro MCP server in your `claude_desktop_config.json`
+2. Copy the content of the desired skill file
+3. Paste it as a **system prompt** in your conversation
+4. Ask your question in natural language
 
 ```json
 {
   "mcpServers": {
-    "fap": {
+    "Flow Analytics Pro": {
       "command": "node",
-      "args": ["/path/to/fap-mcp-server/dist/index.js"],
+      "args": ["/path/to/Flow Analytics Pro-mcp-server/dist/index.js"],
       "env": {
-        "FAP_API_KEY": "votre-clé-api",
-        "FAP_API_URL": "https://votre-instance.flowanalyticspro.com"
+        "Flow Analytics Pro_API_URL": "https://app.flowanalyticspro.com",
+        "Flow Analytics Pro_API_KEY": "your-api-key"
       }
     }
   }
 }
 ```
 
-### Option 2 — Cursor
+</del>
 
-1. Ajoutez le serveur MCP FAP dans les settings Cursor
-2. Ouvrez le fichier skill comme contexte
-3. Posez votre question dans le chat
+### <del>Option 2 — Cursor</del>
 
-### Option 3 — Intégration dans votre propre interface
+<del>
+1. Add the Flow Analytics Pro MCP server in the Cursor settings
+2. Open the skill file as context
+3. Ask your question in the chat
+</del>
 
-Chaque skill contient un **system prompt** prêt à l'emploi. Intégrez-le dans votre application via l'API Anthropic avec les tools MCP FAP activés.
+### <del>Option 3 — Integration into your own interface</del>
+
+<del>Each skill contains a ready-to-use **system prompt**. Integrate it into your application via the Anthropic API with the Flow Analytics Pro MCP tools enabled.</del>
 
 ---
 
-## Couverture des 26 tools MCP FAP
+## Coverage of the 26 Flow Analytics Pro MCP tools
 
-Les 15 skills couvrent l'ensemble des tools disponibles :
+The 15 skills cover all available tools:
 
-### 📊 Portfolio & Projets
-| Tool | Skills qui l'utilisent |
-|------|----------------------|
-| `get_portfolio` | delivery-forecast, capacity-planning, commitment-risk, flow-health, predictability, bottleneck-detection |
-| `get_project` | capacity-planning, predictability |
-| `get_programs` | art-performance, pi-risk, devops-maturity, commitment-tracking, agile-transformation, delivery-capacity, delivery-trend, innovation-vs-debt, team-improvement |
-| `compare_projects` | art-performance, pi-risk, commitment-tracking, delivery-capacity, innovation-vs-debt, team-improvement |
+### 📊 Portfolio & Projects
+
+| Tool               | Skills using it                                                                                                                                               |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `get_portfolio`    | delivery-forecast, capacity-planning, commitment-risk, flow-health, predictability, bottleneck-detection                                                      |
+| `get_project`      | capacity-planning, predictability                                                                                                                             |
+| `get_programs`     | art-performance, pi-risk, devops-maturity, commitment-tracking, agile-transformation, delivery-capacity, delivery-trend, innovation-vs-debt, team-improvement |
+| `compare_projects` | art-performance, pi-risk, commitment-tracking, delivery-capacity, innovation-vs-debt, team-improvement                                                        |
 
 ### 🔄 Flow Metrics
-| Tool | Skills qui l'utilisent |
-|------|----------------------|
-| `get_flow_metrics` | delivery-forecast, capacity-planning, flow-health, predictability, bottleneck-detection, commitment-tracking |
-| `get_flow_trends` | flow-health, predictability, bottleneck-detection, pi-risk, delivery-capacity, delivery-trend, innovation-vs-debt, team-improvement |
-| `get_issues` | commitment-risk, flow-health, capacity-planning |
-| `get_sprint_metrics` | capacity-planning, predictability, art-performance, commitment-tracking |
-| `get_step_analysis` | flow-health, bottleneck-detection, capacity-planning |
-| `get_blocked_tickets` | delivery-forecast, commitment-risk, flow-health, art-performance, pi-risk, delivery-capacity |
-| `get_dimension_metrics` | bottleneck-detection, predictability, delivery-capacity, innovation-vs-debt |
-| `get_due_date_analysis` | delivery-forecast, commitment-risk, art-performance, pi-risk, commitment-tracking |
-| `get_forecast` | delivery-forecast, capacity-planning (Scrum), pi-risk, commitment-tracking, delivery-capacity |
-| `get_ticket_analysis` | *(disponible pour skills V2)* |
+
+| Tool                    | Skills using it                                                                                                                     |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `get_flow_metrics`      | delivery-forecast, capacity-planning, flow-health, predictability, bottleneck-detection, commitment-tracking                        |
+| `get_flow_trends`       | flow-health, predictability, bottleneck-detection, pi-risk, delivery-capacity, delivery-trend, innovation-vs-debt, team-improvement |
+| `get_issues`            | commitment-risk, flow-health, capacity-planning                                                                                     |
+| `get_sprint_metrics`    | capacity-planning, predictability, art-performance, commitment-tracking                                                             |
+| `get_step_analysis`     | flow-health, bottleneck-detection, capacity-planning                                                                                |
+| `get_blocked_tickets`   | delivery-forecast, commitment-risk, flow-health, art-performance, pi-risk, delivery-capacity                                        |
+| `get_dimension_metrics` | bottleneck-detection, predictability, delivery-capacity, innovation-vs-debt                                                         |
+| `get_due_date_analysis` | delivery-forecast, commitment-risk, art-performance, pi-risk, commitment-tracking                                                   |
+| `get_forecast`          | delivery-forecast, capacity-planning (Scrum), pi-risk, commitment-tracking, delivery-capacity                                       |
+| `get_ticket_analysis`   | _(available for V2 skills)_                                                                                                         |
 
 ### 🚀 DORA Metrics
-| Tool | Skills qui l'utilisent |
-|------|----------------------|
-| `get_dora_views` | devops-maturity, delivery-trend, team-improvement |
+
+| Tool               | Skills using it                                     |
+| ------------------ | --------------------------------------------------- |
+| `get_dora_views`   | devops-maturity, delivery-trend, team-improvement   |
 | `get_dora_metrics` | devops-maturity, delivery-trend, innovation-vs-debt |
-| `get_dora_trends` | devops-maturity, delivery-trend, team-improvement |
+| `get_dora_trends`  | devops-maturity, delivery-trend, team-improvement   |
 
 ### 🎯 Assessment
-| Tool | Skills qui l'utilisent |
-|------|----------------------|
-| `get_competency_frameworks` | agile-transformation |
-| `get_assessments` | art-performance, agile-transformation, devops-maturity |
-| `get_assessment_detail` | *(disponible pour skills V2)* |
-| `get_assessment_tasks` | agile-transformation |
-| `get_assessment_compare` | agile-transformation, team-improvement |
-| `get_assessment_trends` | agile-transformation, team-improvement |
+
+| Tool                        | Skills using it                                        |
+| --------------------------- | ------------------------------------------------------ |
+| `get_competency_frameworks` | agile-transformation                                   |
+| `get_assessments`           | art-performance, agile-transformation, devops-maturity |
+| `get_assessment_detail`     | _(available for V2 skills)_                            |
+| `get_assessment_tasks`      | agile-transformation                                   |
+| `get_assessment_compare`    | agile-transformation, team-improvement                 |
+| `get_assessment_trends`     | agile-transformation, team-improvement                 |
 
 ---
 
-## Modules FAP requis par persona
+## Flow Analytics Pro modules required by persona
 
-| Persona | Flow Metrics | DORA Metrics | Assessment |
-|---------|:------------:|:------------:|:----------:|
-| Product Owner | ✅ Requis | — | — |
-| Scrum Master | ✅ Requis | — | — |
-| RTE | ✅ Requis | ✅ Requis | Recommandé |
-| Manager | ✅ Requis | Recommandé | ✅ Requis |
-| CEO / CPO | ✅ Requis | Recommandé | Recommandé |
+| Persona       | Flow Metrics | DORA Metrics | Assessment  |
+| ------------- | :----------: | :----------: | :---------: |
+| Product Owner | ✅ Required  |      —       |      —      |
+| Scrum Master  | ✅ Required  |      —       |      —      |
+| RTE           | ✅ Required  | ✅ Required  | Recommended |
+| Manager       | ✅ Required  | Recommended  | ✅ Required |
+| CEO / CPO     | ✅ Required  | Recommended  | Recommended |
 
 ---
 
-## Exemples de conversations
+## Conversation examples
 
 ### Product Owner — Delivery Forecast
-```
-PO : "On a promis à Airbus une livraison fin mai. On est réalistes ?"
 
-FAP : Prévision de livraison — Projet Core Platform
-      Verdict : ⚠️ RISQUE MODÉRÉ
-      
-      Prévision P85 : livraison probable avant le 2 juin (+3 jours)
-      Cycle time médian : 8 jours (P85 : 14 jours)
-      Tickets bloqués : 2 depuis 6 jours en moyenne
-      
-      La date est atteignable mais 2 stories sont bloquées depuis plus 
-      d'une semaine et consomment de la capacité. Si non débloquées 
-      sous 48h, la livraison fin mai devient incertaine.
-      
-      Action : Identifier et débloquer WPM-34 et WPM-41 aujourd'hui.
+```
+PO: "We promised Airbus a delivery by end of May. Are we being realistic?"
+
+Flow Analytics Pro: Delivery Forecast — Core Platform Project
+      Verdict: ⚠️ MODERATE RISK
+
+      P85 forecast: likely delivery before June 2nd (+3 days)
+      Median cycle time: 8 days (P85: 14 days)
+      Blocked tickets: 2 blocked for an average of 6 days
+
+      The date is achievable but 2 stories have been blocked for over
+      a week and are consuming capacity. If not unblocked within 48h,
+      end-of-May delivery becomes uncertain.
+
+      Action: Identify and unblock WPM-34 and WPM-41 today.
 ```
 
 ### CEO — Delivery Trend
+
 ```
-CEO : "On livre plus vite qu'il y a un an ?"
+CEO: "Are we delivering faster than a year ago?"
 
-FAP : Delivery Trend — Organisation (6 mois)
-      Verdict : 📈 AMÉLIORATION RÉGULIÈRE — Score +62/100
-      
-      Vitesse : cycle time 12j → 8j (-33% plus rapide)
-      Volume : throughput +18% sur 6 mois
-      Déploiements : niveau Medium → High sur 3 équipes core
-      Couverture : 6 équipes sur 8 progressent
-      
-      L'organisation livre aujourd'hui une fonctionnalité en 4 jours 
-      de moins qu'il y a 6 mois, avec 18% de volume supplémentaire.
-      
-      Décision : Protéger l'investissement en transformation — 
-      ne pas sacrifier les pratiques d'amélioration au profit 
-      du scope court terme.
+Flow Analytics Pro: Delivery Trend — Organisation (6 months)
+      Verdict: 📈 STEADY IMPROVEMENT — Score +62/100
+
+      Speed: cycle time 12d → 8d (-33% faster)
+      Volume: throughput +18% over 6 months
+      Deployments: Medium → High level on 3 core teams
+      Coverage: 6 out of 8 teams improving
+
+      The organisation today delivers a feature 4 days faster
+      than 6 months ago, with 18% more volume.
+
+      Decision: Protect the transformation investment —
+      do not sacrifice improvement practices in favour of
+      short-term scope.
 ```
 
 ---
 
-## Contribuer
+## Contributing
 
-Ces skills sont maintenues et enrichies par l'équipe FAP.  
-Pour suggérer une nouvelle skill ou signaler un problème :
+These skills are maintained and expanded by the Flow Analytics Pro team.  
+To suggest a new skill or report an issue:
 
-- **Ouvrir une issue** sur ce repo avec le tag `skill-request`
-- **Proposer une PR** en suivant le template de skill dans `docs/skill-template.md`
-- **Contacter l'équipe** via [flowanalyticspro.com](https://flowanalyticspro.com)
+- **Open an issue** on this repo with the `skill-request` tag
+- **Submit a PR** following the skill template in `template/SKILL.md`
+- **Contact the team** via [flowanalyticspro.com](https://flowanalyticspro.com)
 
-### Critères d'acceptation d'une nouvelle skill
-- Répond à une question métier réelle d'un persona identifié
-- Mobilise au moins 3 tools FAP en séquence logique
-- Inclut des règles d'interprétation avec seuils explicites
-- Produit un format de sortie actionnable avec verdict + action
+### Acceptance criteria for a new skill
 
----
-
-## Roadmap V2
-
-Skills prévues pour la prochaine version :
-
-| Persona | Skill | Question |
-|---------|-------|----------|
-| SM | `sprint-retrospective` | Quels sont les points clés pour notre rétro ? |
-| RTE | `dependency-map` | Quelles sont les dépendances critiques inter-équipes ? |
-| Manager | `team-health` | Quel est l'état de santé de mes équipes ? |
-| CEO | `competitive-benchmark` | Comment se compare-t-on aux standards industrie ? |
-| PO | `backlog-health` | Mon backlog est-il prêt pour le prochain cycle ? |
+- Answers a real business question from an identified persona
+- Uses at least 3 Flow Analytics Pro tools in a logical sequence
+- Includes interpretation rules with explicit thresholds
+- Produces an actionable output format with verdict + action
 
 ---
 
-## À propos
+## V2 Roadmap
 
-**Flow Analytics Pro (FAP)** est une plateforme SaaS et Jira Add-on qui fournit Flow Metrics, DORA Metrics et Assessments pour les équipes agiles.
+Skills planned for the next version:
 
-Développé par [AGILE4ME](https://flowanalyticspro.com) — Châtillon, France.
+| Persona | Skill                   | Question                                       |
+| ------- | ----------------------- | ---------------------------------------------- |
+| SM      | `sprint-retrospective`  | What are the key takeaways for our retro?      |
+| RTE     | `dependency-map`        | What are the critical cross-team dependencies? |
+| Manager | `team-health`           | What is the health status of my teams?         |
+| CEO     | `competitive-benchmark` | How do we compare to industry standards?       |
+| PO      | `backlog-health`        | Is my backlog ready for the next cycle?        |
 
 ---
 
-*FAP Skills Marketplace — v1.0.0*  
-*15 skills • 5 personas • 26 tools MCP*
+## About
 
-## Licence
+**Flow Analytics Pro (FAP)** is a SaaS platform and Jira Add-on providing Flow Metrics, DORA Metrics, and Assessments for agile teams.
 
-© 2026 AGILE4ME — Flow Analytics Pro. Ces skills sont publiées sous licence [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) : utilisation et partage autorisés, usage commercial interdit sans accord.
+Developed by [AGILE4ME](https://flowanalyticspro.com) — Châtillon, France.
+
+---
+
+_Flow Analytics Pro Skills Marketplace — v1.0.0_  
+_15 skills • 5 personas • 26 MCP tools_
+
+## License
+
+© 2026 AGILE4ME — Flow Analytics Pro. These skills are published under the [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) license: use and sharing allowed, commercial use prohibited without agreement.
