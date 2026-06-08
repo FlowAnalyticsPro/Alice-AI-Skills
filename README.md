@@ -307,3 +307,7 @@ Développé par [AGILE4ME](https://flowanalyticspro.com) — Châtillon, France.
 
 *FAP Skills Marketplace — v1.0.0*  
 *15 skills • 5 personas • 26 tools MCP*
+
+## Licence
+
+© 2026 AGILE4ME — Flow Analytics Pro. Ces skills sont publiées sous licence [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) : utilisation et partage autorisés, usage commercial interdit sans accord.
